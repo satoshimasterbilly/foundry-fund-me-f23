@@ -1,67 +1,78 @@
-## Foundry
+## Git git --version
+## Foundry forge --version
 
 **Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
 
-Foundry consists of:
+Quickstart
+git clone https://github.com/Cyfrin/foundry-fund-me-f23
+cd foundry-fund-me-f23
+forge build
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Optional Gitpod
+https://gitpod.io/#github.com/PatrickAlphaC/foundry-fund-me-f23
 
-## Documentation
+## Deploy 
+forge script script/DeployFundMe.s.sol
 
-https://book.getfoundry.sh/
+## Testing
+Discussion and topic of learning
+1. Unit
+2. Integration
+3. Forked
+4. Staging 
+   
+## This repo covered #1 and #3
+forge test
+or
 
-## Usage
+// Only run test functions matching the specified regex pattern.
 
-### Build
+"forge test -m testFunctionName" is deprecated. Please use 
 
-```shell
-$ forge build
-```
+forge test --match-test testFunctionName
 
-### Test
+or
+forge test --fork-url $SEPOLIA_RPC_URL[https://eth-mainnet.g.alchemy.com/v2/UI7q89gx7vDJZ48oL0d_kax3ya52rA6.....] use https as substitute for $SEPOLIA_RPC_URL
 
-```shell
-$ forge test
-```
+## Test Coverage
+forge coverage
 
-### Format
+## Deployment to a testnet or mainnet
 
-```shell
-$ forge fmt
-```
+Setup environment variables
+You'll want to set your SEPOLIA_RPC_URL and PRIVATE_KEY as environment variables. You can add them to a .env file, similar to what you see in .env.example.
 
-### Gas Snapshots
+PRIVATE_KEY: The private key of your account (like from metamask). NOTE: FOR DEVELOPMENT, PLEASE USE A KEY THAT DOESN'T HAVE ANY REAL FUNDS ASSOCIATED WITH IT.
+You can learn how to export it here.
+SEPOLIA_RPC_URL: This is url of the sepolia testnet node you're working with. You can get setup with one for free from Alchemy
+Optionally, add your ETHERSCAN_API_KEY if you want to verify your contract on Etherscan.
 
-```shell
-$ forge snapshot
-```
+Get testnet ETH
+Head over to faucets.chain.link and get some testnet ETH. You should see the ETH show up in your metamask.
 
-### Anvil
+## Deploy
+forge script script/DeployFundMe.s.sol --rpc-url $SEPOLIA_RPC_URL --private-key $PRIVATE_KEY --broadcast --verify --etherscan-api-key $ETHERSCAN_API_KEY
 
-```shell
-$ anvil
-```
+## Scripts
+After deploying to a testnet or local net, you can run the scripts.
 
-### Deploy
+Using cast deployed locally example:
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
+cast send <FUNDME_CONTRACT_ADDRESS> "fund()" --value 0.1ether --private-key <PRIVATE_KEY>
+or
+## Withdraw
+cast send <FUNDME_CONTRACT_ADDRESS> "withdraw()"  --private-key <PRIVATE_KEY>
 
-### Cast
+## Estimate Gas
+forge snapshot
+And you'll see an output file called .gas-snapshot
 
-```shell
-$ cast <subcommand>
-```
+## Formatting
+forge fmt
 
-### Help
+Thank you!
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
-<!-- Testing krunchdata https://kdta.io/b6T40  -->
+
+---------------------------------------------------------------------------
+
+
