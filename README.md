@@ -1,3 +1,25 @@
+This is a section of the Cyfrin Solidity Course.
+
+⭐️ (0:00:00) | Lesson 7: Foundry Fund Me
+
+Foundry Fund Me
+Getting Started
+Requirements
+Quickstart
+Optional Gitpod
+Usage
+Testing
+Test Coverage
+Deployment to a testnet or mainnet
+Scripts
+Withdraw
+Estimate gas
+Formatting
+Thank you!
+
+
+
+
 ## Getting Started
 
 ## Requirements
